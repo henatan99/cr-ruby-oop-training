@@ -58,11 +58,14 @@ class App()
         @books.each_with_index |book, index| do
             puts "#{index}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
         end
-        id = gets.chomp.to_i 
-        if id < 0 || id >= @books.length 
-            puts "Invalid option"
-            return
+        book_index = gets.chomp.to_i
+
+        puts "\nSelect a person from the following list by number (not id)"
+        @people.each_with_index do |person, index|
+          puts "#{index}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
         end
+        person_index = gets.chomp.to_i
+    
         puts "\nDate"
         date = gets.chomp 
         @rentals << Rental.new(date, @books[book_index], @people[person_index])
@@ -70,7 +73,11 @@ class App()
     end
 
     def list_rentals_for_person_id
-        
+        puts "ID of person: "
+        id = gets.chomp.to_i
+        @people[id].rentals.each do |rental|
+            puts "Date: #{rental.date}, Book \"#{rental.book.title}\" by #{rental.book.author} \n"
+        end    
     end
 end
 
