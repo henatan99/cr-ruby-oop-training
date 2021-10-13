@@ -1,25 +1,33 @@
-class App()
+#!/usr/bin/env ruby
+
+require_relative '../example_school_library_decorator/book'
+require_relative '../example_school_library_decorator/person'
+require_relative '../example_school_library_decorator/student'
+require_relative '../example_school_library_decorator/teacher'
+
+
+class App
     def initialize()
         @books = []
         @people = []
-        @rentals = []    
+        @rentals = []
     end
 
     def list_books
-        @books.each |book| do
-            puts `Title: "#{book.title}", Author: #{book.author} \n`
+        @books.each do |book|
+            print "Title: \"#{book.title}\", Author: #{book.author} \n"
         end
     end
 
     def list_people
-        @people.map |person| do
+        @people.map do |person|
             prefix = person. is_a?(Student) ? '[Student]' : '[Teacher]'
-            puts `#{prefix} Name: "#{person.name}", Id: #{person.id}, Age: #{person.age} \n`
+            print "#{prefix} Name: \"#{person.name}\", Id: #{person.id}, Age: #{person.age} \n"
         end
     end
 
     def create_person
-        puts "Do you want to create a student (1) or a teacher (2)? [Input the number]: \n"
+        print "Do you want to create a student (1) or a teacher (2)? [Input the number]: \n"
         person_type = gets.chomp
 
         if person_type != "1" && person_type != "2"
@@ -31,15 +39,15 @@ class App()
         age = gets.chomp.to_i
         puts "Name: "
         name = gets.chomp
-        if person_type === "1" 
-            puts "Has parent permission? [Y/N]: " 
+        if person_type == "1"
+            puts "Has parent permission? [Y/N]: "
             parent_permission = gets.chomp
             parent_permission = parent_permission.downcase == "y"
             @people << Student.new(age, parent_permission, name)
-        elseif person_type === "2" 
+        elsif person_type == "2"
             puts "Specilization: "
             specialization = gets.chomp
-            @people << Teacher.new(age, specialization, name) 
+            @people << Teacher.new(age, specialization, name)
         end
         puts "Person created successfully"
     end
@@ -54,9 +62,9 @@ class App()
     end
 
     def create_rental
-        puts "Select a book from the following list by number \n"
-        @books.each_with_index |book, index| do
-            puts "#{index}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+        print "Select a book from the following list by number \n"
+        @books.each_with_index do |book, index|
+            puts "#{index}) ID: #{index}, Title: #{book.title}"
         end
         book_index = gets.chomp.to_i
 
@@ -65,9 +73,9 @@ class App()
           puts "#{index}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
         end
         person_index = gets.chomp.to_i
-    
+
         puts "\nDate"
-        date = gets.chomp 
+        date = gets.chomp
         @rentals << Rental.new(date, @books[book_index], @people[person_index])
         puts "Rental created successfully"
     end
@@ -77,7 +85,7 @@ class App()
         id = gets.chomp.to_i
         @people[id].rentals.each do |rental|
             puts "Date: #{rental.date}, Book \"#{rental.book.title}\" by #{rental.book.author} \n"
-        end    
+        end
     end
 end
 
@@ -112,13 +120,9 @@ def main
         when "6"
           app.list_rentals_for_person_id()
         when "7"
-          # *Have a way to quit the app.
           puts "Thank you for using this app!"
         end
-    
     end
 end
 
 main()
-
-
