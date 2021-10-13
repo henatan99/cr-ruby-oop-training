@@ -10,6 +10,12 @@ class App()
             puts `Title: "#{book.title}", Author: #{book.author} \n`
         end
     end
+
+    def list_all_people
+        @people.map |person| do
+            puts `#{person. is_a?(Student) ? '[Student]' : '[Teacher]'} Name: "#{person.name}", Id: #{person.id}, Age: #{person.age} \n`
+        end
+    end
 end 
 
 def main
