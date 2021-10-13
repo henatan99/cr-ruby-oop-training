@@ -1,3 +1,11 @@
+class App()
+    def initialize()
+        @books = []
+        @people = []
+        @rentals = []    
+    end
+end 
+
 def main
     app = App.new()
     puts "Welcome to school library app \n\n"
