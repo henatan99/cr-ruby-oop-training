@@ -6,7 +6,7 @@ class App()
     end
 
     def list_books
-        @books.map |book| do
+        @books.each |book| do
             puts `Title: "#{book.title}", Author: #{book.author} \n`
         end
     end
@@ -35,13 +35,12 @@ class App()
             puts "Has parent permission? [Y/N]: " 
             parent_permission = gets.chomp
             parent_permission = parent_permission.downcase == "y"
-            person = Student.new(age, parent_permission, name)
+            @people << Student.new(age, parent_permission, name)
         elseif person_type === "2" 
             puts "Specilization: "
             specialization = gets.chomp
-            person = Teacher.new(age, specialization, name) 
+            @people << Teacher.new(age, specialization, name) 
         end
-        @people.push(person)
         puts "Person created successfully"
     end
 
@@ -50,8 +49,28 @@ class App()
         title = gets.chomp 
         puts "Author"
         author = gets.chomp
-        Book.new(title, author)
+        @books << Book.new(title, author)
         puts "Book created successfully"
+    end
+
+    def create_rental
+        puts "Select a book from the following list by number \n"
+        @books.each_with_index |book, index| do
+            puts "#{index}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+        end
+        id = gets.chomp.to_i 
+        if id < 0 || id >= @books.length 
+            puts "Invalid option"
+            return
+        end
+        puts "\nDate"
+        date = gets.chomp 
+        @rentals << Rental.new(date, @books[book_index], @people[person_index])
+        puts "Rental created successfully"
+    end
+
+    def list_rentals_for_person_id
+        
     end
 end
 
