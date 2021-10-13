@@ -30,11 +30,6 @@ class App
         print "Do you want to create a student (1) or a teacher (2)? [Input the number]: \n"
         person_type = gets.chomp
 
-        if person_type != "1" && person_type != "2"
-            puts "Invalid option"
-            return
-        end
-
         puts "Age: "
         age = gets.chomp.to_i
         puts "Name: "
@@ -72,7 +67,7 @@ class App
         @people.each_with_index do |person, index|
           puts "#{index}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
         end
-        person_index = gets.chomp.to_i
+        person_index = gets.chomp
 
         puts "\nDate"
         date = gets.chomp
