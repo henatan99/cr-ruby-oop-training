@@ -19,7 +19,6 @@ class App()
     end
 
     def create_person
-
         puts "Do you want to create a student (1) or a teacher (2)? [Input the number]: \n"
         person_type = gets.chomp
 
@@ -45,7 +44,16 @@ class App()
         @people.push(person)
         puts "Person created successfully"
     end
-end 
+
+    def create_book
+        puts "Title"
+        title = gets.chomp 
+        puts "Author"
+        author = gets.chomp
+        Book.new(title, author)
+        puts "Book created successfully"
+    end
+end
 
 def main
     app = App.new()
