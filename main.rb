@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 
-require_relative '../example_school_library_decorator/book'
-require_relative '../example_school_library_decorator/person'
-require_relative '../example_school_library_decorator/student'
-require_relative '../example_school_library_decorator/teacher'
+require_relative './example_school_library_decorator/book'
+require_relative './example_school_library_decorator/person'
+require_relative './example_school_library_decorator/student'
+require_relative './example_school_library_decorator/teacher'
 
 
 class App
